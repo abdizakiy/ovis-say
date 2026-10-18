@@ -1,0 +1,6 @@
+# not part of the published site
+.claude/
+preview/
+prompt.md
+assets/images/photos/
+.DS_Store

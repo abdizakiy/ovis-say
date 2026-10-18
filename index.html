@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oktavianus Balu Say — Photography Portfolio</title>
+  <meta name="description" content="Photography portfolio of Oktavianus Balu Say: events, brand and product shoots, prewedding and wedding sessions.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="data:,">
+  <script>
+    /* Runs before first paint.
+       .motion  -> hide reveal targets (only when motion is allowed; main.js removes it if GSAP fails to load)
+       .is-intro -> show the shutter intro once per session (skip with ?intro=0) */
+    (function () {
+      var d = document.documentElement;
+      var ok = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+      if (ok) d.classList.add('motion');
+      var seen = false;
+      try { seen = sessionStorage.getItem('intro-seen') === '1'; } catch (e) {}
+      if (ok && !seen && !/[?&]intro=0/.test(location.search)) {
+        d.classList.add('is-intro');
+        // safety net: never leave the visitor stuck behind the overlay (not used by the video renderer)
+        if (!/[?&]render=1/.test(location.search)) setTimeout(function () {
+          if (d.classList.contains('is-intro')) { d.classList.remove('is-intro'); document.dispatchEvent(new Event('intro:done')); }
+        }, 15000);
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Shutter intro: burst of frames + counter, then the last frame opens to full screen -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__full"><img src="assets/images/hero-3.jpg" alt="" style="object-position:50% 38%"></div>
+    <div class="intro__burst">
+      <img src="assets/images/events-2.jpg" alt="">
+      <img src="assets/images/prewedding-2.jpg" alt="">
+      <img src="assets/images/commercial-2.jpg" alt="">
+      <img src="assets/images/wedding-2.jpg" alt="">
+      <img src="assets/images/events-1.jpg" alt="">
+      <img src="assets/images/wedding-1.jpg" alt="">
+      <img src="assets/images/others-1.jpg" alt="">
+      <img src="assets/images/hero-3.jpg" alt="" style="object-position:50% 38%">
+    </div>
+    <p class="intro__tag caption">Portfolio — Photography</p>
+    <p class="intro__count">000</p>
+    <div class="intro__center">
+      <h2 class="intro__title"></h2>
+      <p class="intro__sub caption">Photography Portfolio</p>
+    </div>
+    <button class="intro__skip caption" type="button">Skip</button>
+  </div>
+
+  <a class="skip" href="#work">Skip to work</a>
+
+  <!-- 01 Navigation -->
+  <header class="nav" data-nav>
+    <a class="nav__brand" href="#top" aria-label="Oktavianus Balu Say, back to top">Oktavianus<br>Balu Say</a>
+    <nav class="nav__main" aria-label="Primary">
+      <ul class="nav__links">
+        <li><a class="link" href="#work">Work</a></li>
+        <li><a class="link" href="#frames">Frames</a></li>
+        <li><a class="link" href="#process">Process</a></li>
+        <li><a class="link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--outline nav__cta" href="#contact">Book a session</a>
+
+    <!-- Mobile: small pill that morphs into the full menu -->
+    <div class="pill" data-pill>
+      <button class="pill__btn caption" type="button" aria-expanded="false" aria-controls="pill-panel">
+        <span>Menu</span><i class="pill__icon" aria-hidden="true"></i>
+      </button>
+      <nav class="pill__panel" id="pill-panel" aria-label="Menu">
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#frames">Selected frames</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn--solid" href="#contact">Book a session</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 02 Hero -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <p class="caption hero__eyebrow" data-hero-fade>Portfolio — Photography</p>
+
+      <div class="hero__stack">
+        <figure class="frame" style="--x:-34%; --r:-9deg">
+          <img src="assets/images/hero-1.jpg" width="534" height="799" fetchpriority="high" alt="Studio set with a softbox light, standing mirror and dried pampas in a vase" style="object-position:50% 50%">
+        </figure>
+        <figure class="frame" style="--x:0%; --r:-2deg">
+          <img src="assets/images/hero-2.jpg" width="1600" height="1069" fetchpriority="high" alt="Studio light on a stand throwing a hard shadow of a small black table" style="object-position:62% 50%">
+        </figure>
+        <figure class="frame" style="--x:34%; --r:6deg">
+          <img src="assets/images/hero-3.jpg" width="1066" height="1599" alt="Portrait of a woman in a dark sequined top, warm light and a vintage clock behind her" style="object-position:50% 40%" fetchpriority="high">
+        </figure>
+      </div>
+
+      <div class="hero__text">
+        <h1 class="hero__title">
+          <span class="mask"><span class="mask__in">Photography</span></span>
+          <span class="mask mask--indent"><span class="mask__in">Portfolio</span></span>
+        </h1>
+        <p class="hero__by" data-hero-fade>by <strong>Oktavianus Balu Say</strong></p>
+        <p class="hero__desc" data-lines data-delay="1.1">Events, brands, couples and the quiet moments in between, photographed with a dark, warm eye.</p>
+        <div class="hero__actions" data-hero-fade>
+          <a class="btn btn--solid" href="#contact">Book a session</a>
+          <a class="btn btn--ghost" href="#work">View work</a>
+        </div>
+      </div>
+
+      <p class="caption hero__url" data-hero-fade>www.oktavianusfg.com</p>
+    </section>
+
+    <!-- Velocity marquee: speeds up and flips with scroll -->
+    <section class="marquee" aria-hidden="true" data-marquee>
+      <div class="mrow" data-dir="1" data-speed="55">
+        <div class="mtrack"><span class="chunk"><span>Events</span><span>Brand &amp; Product</span><span>Prewedding</span><span>Wedding</span><span>Portrait</span></span></div>
+      </div>
+      <div class="mrow mrow--outline" data-dir="-1" data-speed="40">
+        <div class="mtrack"><span class="chunk"><span>Light</span><span>Story</span><span>Trust</span><span>Detail</span><span>Moment</span></span></div>
+      </div>
+    </section>
+
+    <div id="work"></div>
+
+    <!-- 03 Events -->
+    <section class="chapter chapter--events" aria-labelledby="events-title">
+      <div class="chapter__meta caption"><span>Events</span><span>Portfolio</span></div>
+      <div class="triptych">
+        <figure class="frame" data-parallax="6" style="--r:-3deg">
+          <img src="assets/images/events-1.jpg" width="1599" height="1066" loading="lazy" alt="Two musicians performing on a stage under purple lights" style="object-position:46% 50%">
+        </figure>
+        <figure class="frame frame--lead" data-aperture>
+          <img src="assets/images/events-2.jpg" width="1599" height="1066" loading="lazy" alt="Concert crowd in front of a stage lit in blue" style="object-position:50% 50%">
+        </figure>
+        <figure class="frame" data-parallax="8" style="--r:3deg">
+          <img src="assets/images/events-3.jpg" width="1066" height="1599" loading="lazy" alt="Close-up of terracotta-coloured orchids" style="object-position:50% 50%">
+        </figure>
+      </div>
+      <h2 class="display" id="events-title" data-reveal>Events Photography</h2>
+      <p class="chapter__text" data-lines>Concerts, stages and the details around them. Fast light, honest crowds, the second right before the chorus.</p>
+    </section>
+
+    <!-- 04 Commercial -->
+    <section class="chapter chapter--commercial" aria-labelledby="commercial-title">
+      <div class="chapter__meta caption"><span>Commercial</span><span>Portfolio</span></div>
+      <h2 class="display" id="commercial-title">
+        <span class="display__top" data-reveal>Brand &amp;</span>
+        <span class="display__bottom" data-reveal>Product Shoots</span>
+      </h2>
+      <div class="commercial__frames">
+        <figure class="frame frame--wide" data-aperture>
+          <img src="assets/images/commercial-1.jpg" width="1599" height="1066" loading="lazy" alt="Model holding a skincare product against a white background" style="object-position:50% 50%">
+        </figure>
+        <figure class="frame" data-parallax="6" style="--r:3deg">
+          <img src="assets/images/commercial-2.jpg" width="1066" height="1599" loading="lazy" alt="Lipstick and cosmetic product arranged on white blocks" style="object-position:50% 50%">
+        </figure>
+      </div>
+      <p class="chapter__text" data-lines>Clean, controlled light for products and brands that need to look as good as they are.</p>
+    </section>
+
+    <!-- 05 Prewedding -->
+    <section class="chapter chapter--session" aria-labelledby="prewedding-title">
+      <div class="session__band">
+        <div class="chapter__meta caption"><span>Prewedding</span><span>Portfolio</span></div>
+        <h2 class="session__title" id="prewedding-title" data-reveal>Prewedding <small>Session</small></h2>
+      </div>
+      <div class="sweep sweep--ltr" data-sweep>
+        <div class="sweep__bg" aria-hidden="true"></div>
+        <div class="sweep__content triptych">
+          <figure class="frame" data-parallax="6" style="--r:-3deg">
+            <img src="assets/images/prewedding-1.jpg" width="1066" height="1599" loading="lazy" alt="Couple standing in front of a lit carousel" style="object-position:50% 50%">
+          </figure>
+          <figure class="frame frame--lead" data-aperture>
+            <img src="assets/images/prewedding-2.jpg" width="1067" height="1600" loading="lazy" alt="Couple sitting together on sunlit stairs" style="object-position:50% 45%">
+          </figure>
+          <figure class="frame" data-parallax="8" style="--r:3deg">
+            <img src="assets/images/prewedding-3.jpg" width="1066" height="1599" loading="lazy" alt="Couple reflected in a round mirror" style="object-position:50% 50%">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Wedding -->
+    <section class="chapter chapter--session" aria-labelledby="wedding-title">
+      <div class="session__band">
+        <div class="chapter__meta caption"><span>Wedding</span><span>Portfolio</span></div>
+        <h2 class="session__title" id="wedding-title" data-reveal>Wedding <small>Session</small></h2>
+      </div>
+      <div class="sweep sweep--rtl" data-sweep>
+        <div class="sweep__bg" aria-hidden="true"></div>
+        <div class="sweep__content triptych">
+          <figure class="frame" data-parallax="6" style="--r:-3deg">
+            <img src="assets/images/wedding-1.jpg" width="1067" height="1600" loading="lazy" alt="Bride and groom in traditional wedding attire" style="object-position:50% 40%">
+          </figure>
+          <figure class="frame frame--lead" data-aperture>
+            <img src="assets/images/wedding-2.jpg" width="1066" height="1599" loading="lazy" alt="Black and white portrait of a bride in a beaded gown by a window" style="object-position:50% 35%">
+          </figure>
+          <figure class="frame" data-parallax="8" style="--r:3deg">
+            <img src="assets/images/wedding-3.jpg" width="1599" height="1066" loading="lazy" alt="Couple in white walking in a green park" style="object-position:50% 50%">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 Others Look -->
+    <section class="chapter chapter--others sweep sweep--ltr" data-sweep aria-labelledby="others-title">
+      <div class="sweep__bg" aria-hidden="true"></div>
+      <div class="chapter__meta caption"><span>Others Look</span><span>Portfolio</span></div>
+      <div class="others__grid">
+        <div class="others__quote">
+          <h2 class="caption" id="others-title">Others look</h2>
+          <blockquote data-ink>
+            <p>Friendship embodies the true meaning of creativity, for by uniting, we become solid.</p>
+          </blockquote>
+        </div>
+        <figure class="frame frame--wide others__frame" data-aperture>
+          <img src="assets/images/others-1.jpg" width="1599" height="1066" loading="lazy" alt="Two people holding umbrellas in a green field, a tree behind them" style="object-position:50% 50%">
+        </figure>
+      </div>
+    </section>
+
+    <!-- 08 Selected frames: vertical scroll drives a pinned gallery sideways -->
+    <section class="pin" id="frames" aria-labelledby="frames-title" data-pin>
+      <div class="pin__sticky">
+        <div class="chapter__meta caption pin__meta"><span>Selected frames</span><span>Portfolio</span></div>
+        <div class="pin__track" data-track>
+          <div class="pin__intro">
+            <h2 class="display" id="frames-title">Selected<br>Frames</h2>
+            <p class="pin__hint caption">Keep scrolling <span aria-hidden="true">→</span></p>
+          </div>
+          <figure class="pframe" style="--h:60vh; --ar:3/2; --dy:-4vh"><div class="frame"><img src="assets/images/frames/frame-01.jpg" width="1500" height="1000" loading="lazy" alt="Couple walking between tall pine trees" style="object-position:50% 50%"></div><figcaption class="caption">01</figcaption></figure>
+          <figure class="pframe" style="--h:70vh; --ar:2/3; --dy:6vh"><div class="frame"><img src="assets/images/frames/frame-02.jpg" width="999" height="1500" loading="lazy" alt="Black and white profile portrait of a woman with long hair" style="object-position:50% 50%"></div><figcaption class="caption">02</figcaption></figure>
+          <figure class="pframe" style="--h:54vh; --ar:3/2; --dy:-8vh"><div class="frame"><img src="assets/images/frames/frame-03.jpg" width="1500" height="1000" loading="lazy" alt="Couple lying on a sofa in soft window light" style="object-position:50% 50%"></div><figcaption class="caption">03</figcaption></figure>
+          <figure class="pframe" style="--h:66vh; --ar:2/3; --dy:5vh"><div class="frame"><img src="assets/images/frames/frame-04.jpg" width="1002" height="1500" loading="lazy" alt="Black and white portrait of a couple holding each other" style="object-position:50% 50%"></div><figcaption class="caption">04</figcaption></figure>
+          <figure class="pframe" style="--h:58vh; --ar:1500/1045; --dy:-5vh"><div class="frame"><img src="assets/images/frames/frame-05.jpg" width="1500" height="1045" loading="lazy" alt="Group of friends posing close together in a studio" style="object-position:50% 50%"></div><figcaption class="caption">05</figcaption></figure>
+          <figure class="pframe" style="--h:72vh; --ar:2/3; --dy:4vh"><div class="frame"><img src="assets/images/frames/frame-06.jpg" width="999" height="1500" loading="lazy" alt="Woman in a denim vest lit by a circular backdrop" style="object-position:50% 50%"></div><figcaption class="caption">06</figcaption></figure>
+          <figure class="pframe" style="--h:52vh; --ar:3/2; --dy:-6vh"><div class="frame"><img src="assets/images/frames/frame-07.jpg" width="1500" height="1000" loading="lazy" alt="Silhouette of a woman reaching toward a pale moon-like light" style="object-position:50% 50%"></div><figcaption class="caption">07</figcaption></figure>
+          <figure class="pframe" style="--h:68vh; --ar:2/3; --dy:6vh"><div class="frame"><img src="assets/images/frames/frame-08.jpg" width="999" height="1500" loading="lazy" alt="Hand holding a brown leather handbag against a red skirt" style="object-position:50% 50%"></div><figcaption class="caption">08</figcaption></figure>
+          <figure class="pframe" style="--h:56vh; --ar:3/2; --dy:-4vh"><div class="frame"><img src="assets/images/frames/frame-09.jpg" width="1500" height="1000" loading="lazy" alt="Bride walking through a dark field" style="object-position:50% 50%"></div><figcaption class="caption">09</figcaption></figure>
+          <figure class="pframe" style="--h:70vh; --ar:2/3; --dy:5vh"><div class="frame"><img src="assets/images/frames/frame-10.jpg" width="1000" height="1500" loading="lazy" alt="Model in a purple and black top posing against a white wall" style="object-position:50% 50%"></div><figcaption class="caption">10</figcaption></figure>
+        </div>
+        <div class="pin__bar" aria-hidden="true"><span></span></div>
+      </div>
+    </section>
+
+    <!-- 09 Light quote (pinned: words ink in as you scroll) -->
+    <section class="light" aria-label="Quote" data-ink-pin>
+      <div class="light__sticky">
+        <p class="caption light__label">Others look</p>
+        <blockquote class="light__quote" data-ink>
+          <p>“That is the <em>true essence</em> of love.”</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 10 Process -->
+    <section class="process" id="process" aria-labelledby="process-title">
+      <div class="hero__glow process__glow" aria-hidden="true"></div>
+      <div class="chapter__meta caption"><span>Process</span><span>Portfolio</span></div>
+      <div class="process__grid">
+        <div class="process__frames">
+          <figure class="frame" data-parallax="-4" style="--r:3deg">
+            <img src="assets/images/process-2.jpg" width="1022" height="1599" loading="lazy" alt="Singer performing into a microphone against a dark background" style="object-position:50% 30%">
+          </figure>
+          <figure class="frame" data-parallax="6" style="--r:-4deg">
+            <img src="assets/images/process-1.jpg" width="1066" height="1599" loading="lazy" alt="Black and white portrait of a singer gesturing with a microphone" style="object-position:50% 40%">
+          </figure>
+        </div>
+        <div class="process__body">
+          <h2 class="display" id="process-title" data-reveal>Process</h2>
+          <ol class="steps">
+            <li class="step"><span class="step__n">1.</span> Inquiry &amp; Consultation</li>
+            <li class="step"><span class="step__n">2.</span> Planning &amp; Scheduling</li>
+            <li class="step"><span class="step__n">3.</span> Photoshoot Day</li>
+            <li class="step"><span class="step__n">4.</span> Editing &amp; Post-Production</li>
+            <li class="step"><span class="step__n">5.</span> Image Delivery</li>
+            <li class="step"><span class="step__n">6.</span> Follow-up &amp; Feedback</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="hero__glow cta__glow" aria-hidden="true"></div>
+      <p class="caption" data-reveal>Contact</p>
+      <h2 class="display cta__title" id="cta-title" data-reveal>Let’s create<br>something solid.</h2>
+      <p class="cta__text" data-lines>Tell me about your event, brand or day. We’ll plan the rest together.</p>
+      <div class="cta__action" data-reveal>
+        <a class="btn btn--solid btn--lg" href="https://www.oktavianusfg.com" target="_blank" rel="noopener">Book a session</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__brand">Oktavianus Balu Say</p>
+    <nav aria-label="Footer">
+      <ul class="footer__links">
+        <li><a class="link" href="#work">Work</a></li>
+        <li><a class="link" href="#frames">Frames</a></li>
+        <li><a class="link" href="#process">Process</a></li>
+        <li><a class="link" href="#contact">Contact</a></li>
+        <li><a class="link" href="https://www.oktavianusfg.com" target="_blank" rel="noopener">www.oktavianusfg.com</a></li>
+      </ul>
+    </nav>
+    <p class="footer__copy caption">© 2026 Oktavianus Balu Say</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/motion.js" defer></script>
+</body>
+</html>
