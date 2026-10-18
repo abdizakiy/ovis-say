@@ -134,7 +134,7 @@
     <div id="work"></div>
 
     <!-- 03 Events -->
-    <section class="chapter chapter--events" aria-labelledby="events-title">
+    <section id="events" class="chapter chapter--events" aria-labelledby="events-title">
       <div class="chapter__meta caption"><span>Events</span><span>Portfolio</span></div>
       <div class="triptych">
         <figure class="frame" data-parallax="6" style="--r:-3deg">
@@ -152,7 +152,7 @@
     </section>
 
     <!-- 04 Commercial -->
-    <section class="chapter chapter--commercial" aria-labelledby="commercial-title">
+    <section id="commercial" class="chapter chapter--commercial" aria-labelledby="commercial-title">
       <div class="chapter__meta caption"><span>Commercial</span><span>Portfolio</span></div>
       <h2 class="display" id="commercial-title">
         <span class="display__top" data-reveal>Brand &amp;</span>
@@ -170,7 +170,7 @@
     </section>
 
     <!-- 05 Prewedding -->
-    <section class="chapter chapter--session" aria-labelledby="prewedding-title">
+    <section id="prewedding" class="chapter chapter--session" aria-labelledby="prewedding-title">
       <div class="session__band">
         <div class="chapter__meta caption"><span>Prewedding</span><span>Portfolio</span></div>
         <h2 class="session__title" id="prewedding-title" data-reveal>Prewedding <small>Session</small></h2>
@@ -192,7 +192,7 @@
     </section>
 
     <!-- 06 Wedding -->
-    <section class="chapter chapter--session" aria-labelledby="wedding-title">
+    <section id="wedding" class="chapter chapter--session" aria-labelledby="wedding-title">
       <div class="session__band">
         <div class="chapter__meta caption"><span>Wedding</span><span>Portfolio</span></div>
         <h2 class="session__title" id="wedding-title" data-reveal>Wedding <small>Session</small></h2>
@@ -214,7 +214,7 @@
     </section>
 
     <!-- 07 Others Look -->
-    <section class="chapter chapter--others sweep sweep--ltr" data-sweep aria-labelledby="others-title">
+    <section id="others" class="chapter chapter--others sweep sweep--ltr" data-sweep aria-labelledby="others-title">
       <div class="sweep__bg" aria-hidden="true"></div>
       <div class="chapter__meta caption"><span>Others Look</span><span>Portfolio</span></div>
       <div class="others__grid">
@@ -304,17 +304,48 @@
   </main>
 
   <footer class="footer">
-    <p class="footer__brand">Oktavianus Balu Say</p>
-    <nav aria-label="Footer">
-      <ul class="footer__links">
-        <li><a class="link" href="#work">Work</a></li>
-        <li><a class="link" href="#frames">Frames</a></li>
-        <li><a class="link" href="#process">Process</a></li>
-        <li><a class="link" href="#contact">Contact</a></li>
-        <li><a class="link" href="https://www.oktavianusfg.com" target="_blank" rel="noopener">www.oktavianusfg.com</a></li>
-      </ul>
-    </nav>
-    <p class="footer__copy caption">© 2026 Oktavianus Balu Say</p>
+    <div class="footer__top">
+      <p class="footer__mark">Oktavianus <br class="br-m">Balu Say</p>
+      <a class="footer__up link caption" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+
+    <div class="footer__grid">
+      <p class="footer__about">Photography for events, brands, couples and the quiet moments in between.</p>
+
+      <nav class="footer__col" aria-labelledby="f-explore">
+        <h2 class="footer__h caption" id="f-explore">Explore</h2>
+        <ul>
+          <li><a class="link" href="#work">Work</a></li>
+          <li><a class="link" href="#frames">Selected frames</a></li>
+          <li><a class="link" href="#process">Process</a></li>
+          <li><a class="link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__col" aria-labelledby="f-work">
+        <h2 class="footer__h caption" id="f-work">Work</h2>
+        <ul>
+          <li><a class="link" href="#events">Events</a></li>
+          <li><a class="link" href="#commercial">Brand &amp; Product</a></li>
+          <li><a class="link" href="#prewedding">Prewedding</a></li>
+          <li><a class="link" href="#wedding">Wedding</a></li>
+          <li><a class="link" href="#others">Others look</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <h2 class="footer__h caption">Contact</h2>
+        <ul>
+          <li><a class="link" href="https://www.oktavianusfg.com" target="_blank" rel="noopener">www.oktavianusfg.com</a></li>
+          <li><a class="link" href="#contact">Book a session</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom caption">
+      <p>© 2026 Oktavianus Balu Say</p>
+      <p>Photography Portfolio</p>
+    </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
