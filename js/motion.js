@@ -1,7 +1,7 @@
 /* ==========================================================================
    Motion layer. Patterns studied from motion.ayprojex.com and rebuilt for this site:
-   shutter intro · line reveal · ink reveal · aperture reveal · horizontal pin ·
-   velocity marquee · tilt cards · magnetic buttons · pill nav.
+   shutter intro · line reveal · ink reveal · horizontal pin ·
+   velocity marquee · tilt cards · pill nav.
    Plain JS, one requestAnimationFrame loop, no layout thrash beyond a few rect reads.
    ========================================================================== */
 (() => {
@@ -35,7 +35,6 @@
   const expo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
   const inOut3 = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   const inOut5 = (t) => (t < 0.5 ? 16 * t ** 5 : 1 - Math.pow(-2 * t + 2, 5) / 2);
-  const easeOut3 = (t) => 1 - Math.pow(1 - t, 3);
   const linear = (t) => t;
   let skipped = false;
   /* Time only advances while frames run, so a hidden tab resumes where it stopped. */
@@ -97,21 +96,6 @@
     return { el, words: $('.w', el), pin: el.closest('[data-ink-pin]'), on: -1 };
   });
 
-  /* ---------- Aperture reveal ---------- */
-  const BLADES = 8;
-  const apertures = $('[data-aperture]').map((el) => ({ el, img: el.querySelector('img'), p: 0, raw: 0 }));
-  function iris(a, p) {
-    const w = a.el.clientWidth, h = a.el.clientHeight;
-    if (p >= 1) { a.el.style.clipPath = 'none'; return; }
-    const R = Math.hypot(w, h) / 2 / Math.cos(Math.PI / BLADES); // big enough to cover the frame when open
-    const r = R * p, rot = (1 - p) * Math.PI * 0.6, pts = [];
-    for (let k = 0; k < BLADES; k++) {
-      const ang = rot + (k / BLADES) * Math.PI * 2;
-      pts.push(`${(w / 2 + Math.cos(ang) * r).toFixed(1)}px ${(h / 2 + Math.sin(ang) * r).toFixed(1)}px`);
-    }
-    a.el.style.clipPath = `polygon(${pts.join(',')})`;
-  }
-
   /* ---------- Horizontal pin ---------- */
   const pin = document.querySelector('[data-pin]');
   const pinState = pin && {
@@ -168,13 +152,6 @@
     document.addEventListener('pointerleave', () => { pointer.x = pointer.y = -999; });
   }
 
-  /* ---------- Magnetic buttons ---------- */
-  const mags = !fine ? [] : $('.btn').filter((b) => !b.closest('.pill__panel')).map((el) => {
-    el.innerHTML = `<span class="btn__label">${el.innerHTML}</span>`;
-    return { el, label: el.firstElementChild, x: 0, y: 0, vx: 0, vy: 0, lx: 0, ly: 0, lvx: 0, lvy: 0, rest: true };
-  });
-  const K = 0.12, DAMP = 0.78;
-
   /* ---------- Main loop ---------- */
   let prev = performance.now();
   function frame(now) {
@@ -209,20 +186,6 @@
       }
       const on = Math.round(p * k.words.length);
       if (on !== k.on) { k.words.forEach((w, i) => w.classList.toggle('on', i < on)); k.on = on; }
-    });
-
-    // aperture reveal
-    apertures.forEach((a) => {
-      const r = a.el.getBoundingClientRect();
-      a.raw = clamp((vh - r.top) / (vh * 0.7));
-      a.p += (a.raw - a.p) * (1 - Math.pow(1 - 0.14, f));
-      if (Math.abs(a.raw - a.p) < 0.001) a.p = a.raw;
-      const e = easeOut3(a.p);
-      if (e !== a.e) {
-        iris(a, e);
-        if (a.img) a.img.style.transform = e >= 1 ? '' : `scale(${(1.3 - 0.3 * e).toFixed(4)})`;
-        a.e = e;
-      }
     });
 
     // horizontal pin
@@ -283,29 +246,6 @@
       c.el.style.setProperty('--gx', c.gx.toFixed(1) + '%');
       c.el.style.setProperty('--gy', c.gy.toFixed(1) + '%');
       c.el.style.setProperty('--g', inside ? 1 : 0);
-    });
-
-    // magnetic buttons (spring: it overshoots a touch on release)
-    mags.forEach((m) => {
-      let inside = false, tx = 0, ty = 0, ltx = 0, lty = 0;
-      if (pointer.seen) {
-        const r = m.el.getBoundingClientRect();
-        // measure from the resting centre so the pull does not feed on itself
-        const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
-        const dx = pointer.x - cx, dy = pointer.y - cy;
-        inside = Math.hypot(dx, dy) < Math.max(r.width, r.height) * 0.75 + 40;
-        if (inside) { tx = dx * 0.32; ty = dy * 0.32; ltx = dx * 0.14; lty = dy * 0.14; }
-      }
-      if (!inside && m.rest) return;
-      m.vx = (m.vx + (tx - m.x) * K * f) * Math.pow(DAMP, f); m.x += m.vx * f;
-      m.vy = (m.vy + (ty - m.y) * K * f) * Math.pow(DAMP, f); m.y += m.vy * f;
-      m.lvx = (m.lvx + (ltx - m.lx) * K * f) * Math.pow(DAMP, f); m.lx += m.lvx * f;
-      m.lvy = (m.lvy + (lty - m.ly) * K * f) * Math.pow(DAMP, f); m.ly += m.lvy * f;
-      const still = !inside && [m.x, m.y, m.vx, m.vy, m.lx, m.ly].every((v) => Math.abs(v) < 0.02);
-      if (still) { m.x = m.y = m.vx = m.vy = m.lx = m.ly = m.lvx = m.lvy = 0; m.rest = true; m.el.style.transform = ''; m.label.style.transform = ''; return; }
-      m.rest = false;
-      m.el.style.transform = `translate3d(${m.x.toFixed(2)}px,${m.y.toFixed(2)}px,0)`;
-      m.label.style.transform = `translate3d(${m.lx.toFixed(2)}px,${m.ly.toFixed(2)}px,0)`;
     });
 
     requestAnimationFrame(frame);

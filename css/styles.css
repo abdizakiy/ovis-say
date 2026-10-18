@@ -734,8 +734,6 @@ html.is-intro .intro { display: block; }
   background: radial-gradient(circle at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 55%);
 }
 
-/* ---------- Magnetic buttons ---------- */
-.btn__label { display: inline-block; }
 .cta__action { display: inline-block; }
 
 /* ---------- Line reveal / ink reveal ---------- */
@@ -746,9 +744,6 @@ html.is-intro .intro { display: block; }
 .motion [data-ink] .w.on { color: var(--ink-on); }
 .light__quote em .w.on { color: var(--accent); }
 .others__quote blockquote { --ink-off: rgba(255, 255, 255, 0.22); --ink-on: #fff; }
-
-/* ---------- Aperture reveal (clip-path is driven by motion.js) ---------- */
-.motion [data-aperture] { clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%); }
 
 /* ---------- Pill nav (mobile) ---------- */
 .pill { display: none; position: relative; z-index: 2; }
@@ -803,6 +798,85 @@ html.is-intro .intro { display: block; }
 .pill.is-open .pill__panel li:nth-child(4) a { transition-delay: 0.32s; }
 .pill.is-open .pill__panel .btn { transition-delay: 0.4s, 0.4s, 0s, 0s, 0s; }
 
+/* ---------- Photo preview (lightbox) ---------- */
+.frame.is-previewable { cursor: zoom-in; }
+.frame.is-previewable:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+html.is-lightbox { overflow: hidden; }
+
+.lb { position: fixed; inset: 0; z-index: 300; }
+.lb[hidden] { display: none; }
+.lb__bg { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.95); }
+.lb__stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  padding: 76px clamp(16px, 8vw, 128px) 104px;
+}
+.lb__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  cursor: default;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.lb__btn {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8em;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+}
+.lb__btn:hover { background: #fff; border-color: #fff; color: #000; }
+.lb__btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.lb__close { top: var(--s-4); right: var(--gutter); padding: 0.85em 1.25em; }
+.lb__close i { position: relative; width: 11px; height: 11px; }
+.lb__close i::before,
+.lb__close i::after { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: currentColor; }
+.lb__close i::before { transform: rotate(45deg); }
+.lb__close i::after { transform: rotate(-45deg); }
+.lb__nav { top: 50%; width: 52px; height: 52px; font-size: 1.2rem; transform: translateY(-50%); }
+.lb__prev { left: clamp(12px, 2.4vw, 36px); }
+.lb__next { right: clamp(12px, 2.4vw, 36px); }
+.lb__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  padding-inline: 96px;
+  text-align: center;
+  pointer-events: none;
+}
+.lb__count { color: var(--text-secondary); }
+.lb__cap { max-width: 64ch; font-weight: 400; letter-spacing: 0.1em; text-transform: none; font-size: 0.78rem; line-height: 1.5; }
+
+@media (max-width: 720px) {
+  .lb__stage { padding: 72px 12px 132px; }
+  .lb__nav { top: auto; bottom: var(--s-5); width: 46px; height: 46px; transform: none; }
+  .lb__prev { left: var(--gutter); }
+  .lb__next { right: var(--gutter); }
+  .lb__bar { bottom: var(--s-5); padding-inline: calc(var(--gutter) + 58px); gap: 4px; }
+  .lb__cap { font-size: 0.72rem; }
+}
+
 /* ---------- Motion initial states (only when motion is allowed) ---------- */
 
 .motion .mask__in { display: block; opacity: 0; } /* GSAP sets the transform; CSS only hides the first frame */
@@ -810,8 +884,9 @@ html.is-intro .intro { display: block; }
 .motion [data-hero-fade],
 .motion .hero__glow,
 .motion .hero__stack .frame,
-.motion .triptych .frame:not([data-aperture]),
-.motion .commercial__frames .frame:not([data-aperture]),
+.motion .triptych .frame,
+.motion .commercial__frames .frame,
+.motion .others__frame,
 .motion .process__frames .frame { opacity: 0; }
 
 /* ---------- Responsive ---------- */

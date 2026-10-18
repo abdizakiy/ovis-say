@@ -45,10 +45,10 @@
       });
     });
 
-    /* Frame groups: staggered entrance (aperture frames open by themselves in motion.js) */
-    ['.triptych', '.commercial__frames', '.process__frames'].forEach((sel) => {
+    /* Frame groups: staggered entrance */
+    ['.triptych', '.commercial__frames', '.others__grid', '.process__frames'].forEach((sel) => {
       q(sel).forEach((group) => {
-        const frames = q('.frame', group).filter((f) => !f.hasAttribute('data-aperture'));
+        const frames = q('.frame', group);
         if (!frames.length) return;
         gsap.fromTo(frames, { opacity: 0, y: 60 }, {
           opacity: 1, y: 0, duration: 1, stagger: 0.14, ease: 'power3.out',
