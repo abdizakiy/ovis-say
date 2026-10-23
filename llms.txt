@@ -1,0 +1,17 @@
+# Oktavianus Balu Say — Photography Portfolio
+
+> Portfolio website of Oktavianus Balu Say, a photographer working in event, wedding, prewedding, brand and product, and portrait photography.
+
+## Work
+- [Events](https://abdizakiy.github.io/ovis-say/#events): concerts, stages and the details around them
+- [Brand & Product](https://abdizakiy.github.io/ovis-say/#commercial): studio and product photography for brands
+- [Prewedding](https://abdizakiy.github.io/ovis-say/#prewedding): prewedding sessions for couples
+- [Wedding](https://abdizakiy.github.io/ovis-say/#wedding): wedding day photography
+- [Selected frames](https://abdizakiy.github.io/ovis-say/#frames): ten further photographs from different sessions
+
+## How a shoot works
+- [Process](https://abdizakiy.github.io/ovis-say/#process): inquiry and consultation, planning and scheduling, photoshoot day, editing and post-production, image delivery, follow-up and feedback
+
+## Notes
+- All photographs on this site are by Oktavianus Balu Say.
+- Language: English.

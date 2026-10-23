@@ -3,52 +3,467 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Oktavianus Balu Say — Photography Portfolio</title>
-  <meta name="description" content="Photography portfolio of Oktavianus Balu Say: events, brand and product shoots, prewedding and wedding sessions.">
+  <title>Oktavianus Balu Say | Event, Wedding &amp; Product Photographer</title>
+  <meta name="description" content="Photography portfolio of Oktavianus Balu Say: event, wedding, prewedding and brand &amp; product photography. Browse selected work and see how a shoot comes together.">
+  <link rel="canonical" href="https://abdizakiy.github.io/ovis-say/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Oktavianus Balu Say">
   <meta name="theme-color" content="#000000">
-  <link rel="icon" href="data:,">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Social previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Oktavianus Balu Say">
+  <meta property="og:title" content="Oktavianus Balu Say | Event, Wedding &amp; Product Photographer">
+  <meta property="og:description" content="Selected work in event, wedding, prewedding and brand &amp; product photography.">
+  <meta property="og:url" content="https://abdizakiy.github.io/ovis-say/">
+  <meta property="og:image" content="https://abdizakiy.github.io/ovis-say/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Oktavianus Balu Say photography portfolio: three framed photographs on a dark background">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Oktavianus Balu Say | Event, Wedding &amp; Product Photographer">
+  <meta name="twitter:description" content="Selected work in event, wedding, prewedding and brand &amp; product photography.">
+  <meta name="twitter:image" content="https://abdizakiy.github.io/ovis-say/assets/og-image.jpg">
+  <meta name="twitter:image:alt" content="Oktavianus Balu Say photography portfolio: three framed photographs on a dark background">
+
+  <!-- Icons -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
   <script>
     /* Runs before first paint.
-       .motion  -> hide reveal targets (only when motion is allowed; main.js removes it if GSAP fails to load)
-       .is-intro -> show the shutter intro once per session (skip with ?intro=0) */
+       .motion   -> hide reveal targets (only when motion is allowed; main.js removes it if GSAP fails to load)
+       .is-intro -> show the shutter intro on a first visit, then not again for 7 days
+                    (?intro=0 skips it, ?intro=1 replays it) */
     (function () {
       var d = document.documentElement;
       var ok = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
       if (ok) d.classList.add('motion');
-      var seen = false;
-      try { seen = sessionStorage.getItem('intro-seen') === '1'; } catch (e) {}
-      if (ok && !seen && !/[?&]intro=0/.test(location.search)) {
+      var recent = false;
+      try { var t = +localStorage.getItem('intro-seen-at'); recent = t && Date.now() - t < 7 * 864e5; } catch (e) {}
+      var q = location.search;
+      var show = ok && !/[?&]intro=0/.test(q) && (!recent || /[?&]intro=1/.test(q));
+      if (show) {
         d.classList.add('is-intro');
         // safety net: never leave the visitor stuck behind the overlay (not used by the video renderer)
-        if (!/[?&]render=1/.test(location.search)) setTimeout(function () {
+        if (!/[?&]render=1/.test(q)) setTimeout(function () {
           if (d.classList.contains('is-intro')) { d.classList.remove('is-intro'); document.dispatchEvent(new Event('intro:done')); }
-        }, 15000);
+        }, 9000);
       }
     })();
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/raleway-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://abdizakiy.github.io/ovis-say/#website",
+      "url": "https://abdizakiy.github.io/ovis-say/",
+      "name": "Oktavianus Balu Say — Photography Portfolio",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://abdizakiy.github.io/ovis-say/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://abdizakiy.github.io/ovis-say/#person",
+      "name": "Oktavianus Balu Say",
+      "jobTitle": "Photographer",
+      "url": "https://abdizakiy.github.io/ovis-say/",
+      "image": "https://abdizakiy.github.io/ovis-say/assets/og-image.jpg",
+      "description": "Photographer working in event, wedding, prewedding, brand and product, and portrait photography.",
+      "knowsAbout": [
+        "Event photography",
+        "Wedding photography",
+        "Prewedding photography",
+        "Brand and product photography",
+        "Portrait photography"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://abdizakiy.github.io/ovis-say/#webpage",
+      "url": "https://abdizakiy.github.io/ovis-say/",
+      "name": "Oktavianus Balu Say | Event, Wedding & Product Photographer",
+      "isPartOf": {
+        "@id": "https://abdizakiy.github.io/ovis-say/#website"
+      },
+      "about": {
+        "@id": "https://abdizakiy.github.io/ovis-say/#person"
+      },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://abdizakiy.github.io/ovis-say/assets/og-image.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "ImageGallery",
+      "@id": "https://abdizakiy.github.io/ovis-say/#gallery",
+      "name": "Selected photographs by Oktavianus Balu Say",
+      "url": "https://abdizakiy.github.io/ovis-say/",
+      "creator": {
+        "@id": "https://abdizakiy.github.io/ovis-say/#person"
+      },
+      "image": [
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/studio-softbox-set-with-pampas.webp",
+          "name": "Studio set with a softbox light, standing mirror and dried pampas in a vase",
+          "caption": "Studio set with a softbox light, standing mirror and dried pampas in a vase",
+          "width": 534,
+          "height": 799,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/studio-light-stand-table-shadow.webp",
+          "name": "Studio light on a stand throwing a hard shadow of a small black table",
+          "caption": "Studio light on a stand throwing a hard shadow of a small black table",
+          "width": 1600,
+          "height": 1069,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/portrait-woman-leather-chair-warm-light.webp",
+          "name": "Portrait of a woman in a dark sequined top, warm light and a vintage clock behind her",
+          "caption": "Portrait of a woman in a dark sequined top, warm light and a vintage clock behind her",
+          "width": 1066,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/live-band-on-stage-purple-lights.webp",
+          "name": "Two musicians performing on a stage under purple lights",
+          "caption": "Two musicians performing on a stage under purple lights",
+          "width": 1599,
+          "height": 1066,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/concert-crowd-blue-stage-lights.webp",
+          "name": "Concert crowd in front of a stage lit in blue",
+          "caption": "Concert crowd in front of a stage lit in blue",
+          "width": 1599,
+          "height": 1066,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/orchid-flowers-close-up.webp",
+          "name": "Close-up of terracotta-coloured orchids",
+          "caption": "Close-up of terracotta-coloured orchids",
+          "width": 1066,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/skincare-product-model-white-background.webp",
+          "name": "Model holding a skincare product against a white background",
+          "caption": "Model holding a skincare product against a white background",
+          "width": 1599,
+          "height": 1066,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/lipstick-product-photography.webp",
+          "name": "Lipstick and cosmetic product arranged on white blocks",
+          "caption": "Lipstick and cosmetic product arranged on white blocks",
+          "width": 1066,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/prewedding-couple-carousel.webp",
+          "name": "Couple standing in front of a lit carousel",
+          "caption": "Couple standing in front of a lit carousel",
+          "width": 1066,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/prewedding-couple-sunlit-stairs.webp",
+          "name": "Couple sitting together on sunlit stairs",
+          "caption": "Couple sitting together on sunlit stairs",
+          "width": 1067,
+          "height": 1600,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/prewedding-couple-round-mirror.webp",
+          "name": "Couple reflected in a round mirror",
+          "caption": "Couple reflected in a round mirror",
+          "width": 1066,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/wedding-couple-traditional-attire.webp",
+          "name": "Bride and groom in traditional wedding attire",
+          "caption": "Bride and groom in traditional wedding attire",
+          "width": 1067,
+          "height": 1600,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/bride-portrait-black-and-white.webp",
+          "name": "Black and white portrait of a bride in a beaded gown by a window",
+          "caption": "Black and white portrait of a bride in a beaded gown by a window",
+          "width": 1066,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/wedding-couple-green-park.webp",
+          "name": "Couple in white walking in a green park",
+          "caption": "Couple in white walking in a green park",
+          "width": 1599,
+          "height": 1066,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/couple-with-umbrellas-green-field.webp",
+          "name": "Two people holding umbrellas in a green field, a tree behind them",
+          "caption": "Two people holding umbrellas in a green field, a tree behind them",
+          "width": 1599,
+          "height": 1066,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/couple-between-pine-trees.webp",
+          "name": "Couple walking between tall pine trees",
+          "caption": "Couple walking between tall pine trees",
+          "width": 1500,
+          "height": 1000,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/woman-profile-portrait-black-and-white.webp",
+          "name": "Black and white profile portrait of a woman with long hair",
+          "caption": "Black and white profile portrait of a woman with long hair",
+          "width": 999,
+          "height": 1500,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/couple-on-sofa-window-light.webp",
+          "name": "Couple lying on a sofa in soft window light",
+          "caption": "Couple lying on a sofa in soft window light",
+          "width": 1500,
+          "height": 1000,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/couple-embrace-black-and-white.webp",
+          "name": "Black and white portrait of a couple holding each other",
+          "caption": "Black and white portrait of a couple holding each other",
+          "width": 1002,
+          "height": 1500,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/friends-group-studio-portrait.webp",
+          "name": "Group of friends posing close together in a studio",
+          "caption": "Group of friends posing close together in a studio",
+          "width": 1500,
+          "height": 1045,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/woman-denim-vest-circle-backdrop.webp",
+          "name": "Woman in a denim vest lit by a circular backdrop",
+          "caption": "Woman in a denim vest lit by a circular backdrop",
+          "width": 999,
+          "height": 1500,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/silhouette-reaching-toward-moon-light.webp",
+          "name": "Silhouette of a woman reaching toward a pale moon-like light",
+          "caption": "Silhouette of a woman reaching toward a pale moon-like light",
+          "width": 1500,
+          "height": 1000,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/brown-leather-handbag-detail.webp",
+          "name": "Hand holding a brown leather handbag against a red skirt",
+          "caption": "Hand holding a brown leather handbag against a red skirt",
+          "width": 999,
+          "height": 1500,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/bride-walking-dark-field.webp",
+          "name": "Bride walking through a dark field",
+          "caption": "Bride walking through a dark field",
+          "width": 1500,
+          "height": 1000,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/frames/model-purple-top-white-wall.webp",
+          "name": "Model in a purple and black top posing against a white wall",
+          "caption": "Model in a purple and black top posing against a white wall",
+          "width": 1000,
+          "height": 1500,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/singer-performing-with-microphone.webp",
+          "name": "Singer performing into a microphone against a dark background",
+          "caption": "Singer performing into a microphone against a dark background",
+          "width": 1022,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://abdizakiy.github.io/ovis-say/assets/images/singer-portrait-black-and-white.webp",
+          "name": "Black and white portrait of a singer gesturing with a microphone",
+          "caption": "Black and white portrait of a singer gesturing with a microphone",
+          "width": 1066,
+          "height": 1599,
+          "creator": {
+            "@id": "https://abdizakiy.github.io/ovis-say/#person"
+          },
+          "encodingFormat": "image/webp"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <!-- Shutter intro: burst of frames + counter, then the last frame opens to full screen -->
   <div class="intro" id="intro" aria-hidden="true">
-    <div class="intro__full"><img src="assets/images/hero-3.jpg" alt="" style="object-position:50% 38%"></div>
+    <div class="intro__full"><img src="assets/images/portrait-woman-leather-chair-warm-light.webp" alt="" style="object-position:50% 38%"></div>
     <div class="intro__burst">
-      <img src="assets/images/events-2.jpg" alt="">
-      <img src="assets/images/prewedding-2.jpg" alt="">
-      <img src="assets/images/commercial-2.jpg" alt="">
-      <img src="assets/images/wedding-2.jpg" alt="">
-      <img src="assets/images/events-1.jpg" alt="">
-      <img src="assets/images/wedding-1.jpg" alt="">
-      <img src="assets/images/others-1.jpg" alt="">
-      <img src="assets/images/hero-3.jpg" alt="" style="object-position:50% 38%">
+      <img src="assets/images/concert-crowd-blue-stage-lights.webp" alt="">
+      <img src="assets/images/prewedding-couple-sunlit-stairs.webp" alt="">
+      <img src="assets/images/lipstick-product-photography.webp" alt="">
+      <img src="assets/images/bride-portrait-black-and-white.webp" alt="">
+      <img src="assets/images/live-band-on-stage-purple-lights.webp" alt="">
+      <img src="assets/images/wedding-couple-traditional-attire.webp" alt="">
+      <img src="assets/images/couple-with-umbrellas-green-field.webp" alt="">
+      <img src="assets/images/portrait-woman-leather-chair-warm-light.webp" alt="" style="object-position:50% 38%">
     </div>
     <p class="intro__tag caption">Portfolio — Photography</p>
     <p class="intro__count">000</p>
     <div class="intro__center">
-      <h2 class="intro__title"></h2>
+      <div class="intro__title"></div>
       <p class="intro__sub caption">Photography Portfolio</p>
     </div>
     <button class="intro__skip caption" type="button">Skip</button>
@@ -95,18 +510,19 @@
 
       <div class="hero__stack">
         <figure class="frame" style="--x:-34%; --r:-9deg">
-          <img src="assets/images/hero-1.jpg" width="534" height="799" fetchpriority="high" alt="Studio set with a softbox light, standing mirror and dried pampas in a vase" style="object-position:50% 50%">
+          <img src="assets/images/studio-softbox-set-with-pampas.webp" width="534" height="799" fetchpriority="high" alt="Studio set with a softbox light, standing mirror and dried pampas in a vase" style="object-position:50% 50%">
         </figure>
         <figure class="frame" style="--x:0%; --r:-2deg">
-          <img src="assets/images/hero-2.jpg" width="1600" height="1069" fetchpriority="high" alt="Studio light on a stand throwing a hard shadow of a small black table" style="object-position:62% 50%">
+          <img src="assets/images/studio-light-stand-table-shadow.webp" width="1600" height="1069" fetchpriority="high" alt="Studio light on a stand throwing a hard shadow of a small black table" style="object-position:62% 50%">
         </figure>
         <figure class="frame" style="--x:34%; --r:6deg">
-          <img src="assets/images/hero-3.jpg" width="1066" height="1599" alt="Portrait of a woman in a dark sequined top, warm light and a vintage clock behind her" style="object-position:50% 40%" fetchpriority="high">
+          <img src="assets/images/portrait-woman-leather-chair-warm-light.webp" width="1066" height="1599" alt="Portrait of a woman in a dark sequined top, warm light and a vintage clock behind her" style="object-position:50% 40%" fetchpriority="high">
         </figure>
       </div>
 
       <div class="hero__text">
         <h1 class="hero__title">
+          <span class="sr-only">Oktavianus Balu Say: </span>
           <span class="mask"><span class="mask__in">Photography</span></span>
           <span class="mask mask--indent"><span class="mask__in">Portfolio</span></span>
         </h1>
@@ -138,13 +554,13 @@
       <div class="chapter__meta caption"><span>Events</span><span>Portfolio</span></div>
       <div class="triptych">
         <figure class="frame" data-parallax="6" style="--r:-3deg">
-          <img src="assets/images/events-1.jpg" width="1599" height="1066" loading="lazy" alt="Two musicians performing on a stage under purple lights" style="object-position:46% 50%">
+          <img src="assets/images/live-band-on-stage-purple-lights.webp" width="1599" height="1066" loading="lazy" alt="Two musicians performing on a stage under purple lights" style="object-position:46% 50%">
         </figure>
         <figure class="frame frame--lead" data-parallax="-4">
-          <img src="assets/images/events-2.jpg" width="1599" height="1066" loading="lazy" alt="Concert crowd in front of a stage lit in blue" style="object-position:50% 50%">
+          <img src="assets/images/concert-crowd-blue-stage-lights.webp" width="1599" height="1066" loading="lazy" alt="Concert crowd in front of a stage lit in blue" style="object-position:50% 50%">
         </figure>
         <figure class="frame" data-parallax="8" style="--r:3deg">
-          <img src="assets/images/events-3.jpg" width="1066" height="1599" loading="lazy" alt="Close-up of terracotta-coloured orchids" style="object-position:50% 50%">
+          <img src="assets/images/orchid-flowers-close-up.webp" width="1066" height="1599" loading="lazy" alt="Close-up of terracotta-coloured orchids" style="object-position:50% 50%">
         </figure>
       </div>
       <h2 class="display" id="events-title" data-reveal>Events Photography</h2>
@@ -160,10 +576,10 @@
       </h2>
       <div class="commercial__frames">
         <figure class="frame frame--wide" data-parallax="-5">
-          <img src="assets/images/commercial-1.jpg" width="1599" height="1066" loading="lazy" alt="Model holding a skincare product against a white background" style="object-position:50% 50%">
+          <img src="assets/images/skincare-product-model-white-background.webp" width="1599" height="1066" loading="lazy" alt="Model holding a skincare product against a white background" style="object-position:50% 50%">
         </figure>
         <figure class="frame" data-parallax="6" style="--r:3deg">
-          <img src="assets/images/commercial-2.jpg" width="1066" height="1599" loading="lazy" alt="Lipstick and cosmetic product arranged on white blocks" style="object-position:50% 50%">
+          <img src="assets/images/lipstick-product-photography.webp" width="1066" height="1599" loading="lazy" alt="Lipstick and cosmetic product arranged on white blocks" style="object-position:50% 50%">
         </figure>
       </div>
       <p class="chapter__text" data-lines>Clean, controlled light for products and brands that need to look as good as they are.</p>
@@ -179,13 +595,13 @@
         <div class="sweep__bg" aria-hidden="true"></div>
         <div class="sweep__content triptych">
           <figure class="frame" data-parallax="6" style="--r:-3deg">
-            <img src="assets/images/prewedding-1.jpg" width="1066" height="1599" loading="lazy" alt="Couple standing in front of a lit carousel" style="object-position:50% 50%">
+            <img src="assets/images/prewedding-couple-carousel.webp" width="1066" height="1599" loading="lazy" alt="Couple standing in front of a lit carousel" style="object-position:50% 50%">
           </figure>
           <figure class="frame frame--lead" data-parallax="-4">
-            <img src="assets/images/prewedding-2.jpg" width="1067" height="1600" loading="lazy" alt="Couple sitting together on sunlit stairs" style="object-position:50% 45%">
+            <img src="assets/images/prewedding-couple-sunlit-stairs.webp" width="1067" height="1600" loading="lazy" alt="Couple sitting together on sunlit stairs" style="object-position:50% 45%">
           </figure>
           <figure class="frame" data-parallax="8" style="--r:3deg">
-            <img src="assets/images/prewedding-3.jpg" width="1066" height="1599" loading="lazy" alt="Couple reflected in a round mirror" style="object-position:50% 50%">
+            <img src="assets/images/prewedding-couple-round-mirror.webp" width="1066" height="1599" loading="lazy" alt="Couple reflected in a round mirror" style="object-position:50% 50%">
           </figure>
         </div>
       </div>
@@ -201,13 +617,13 @@
         <div class="sweep__bg" aria-hidden="true"></div>
         <div class="sweep__content triptych">
           <figure class="frame" data-parallax="6" style="--r:-3deg">
-            <img src="assets/images/wedding-1.jpg" width="1067" height="1600" loading="lazy" alt="Bride and groom in traditional wedding attire" style="object-position:50% 40%">
+            <img src="assets/images/wedding-couple-traditional-attire.webp" width="1067" height="1600" loading="lazy" alt="Bride and groom in traditional wedding attire" style="object-position:50% 40%">
           </figure>
           <figure class="frame frame--lead" data-parallax="-4">
-            <img src="assets/images/wedding-2.jpg" width="1066" height="1599" loading="lazy" alt="Black and white portrait of a bride in a beaded gown by a window" style="object-position:50% 35%">
+            <img src="assets/images/bride-portrait-black-and-white.webp" width="1066" height="1599" loading="lazy" alt="Black and white portrait of a bride in a beaded gown by a window" style="object-position:50% 35%">
           </figure>
           <figure class="frame" data-parallax="8" style="--r:3deg">
-            <img src="assets/images/wedding-3.jpg" width="1599" height="1066" loading="lazy" alt="Couple in white walking in a green park" style="object-position:50% 50%">
+            <img src="assets/images/wedding-couple-green-park.webp" width="1599" height="1066" loading="lazy" alt="Couple in white walking in a green park" style="object-position:50% 50%">
           </figure>
         </div>
       </div>
@@ -225,7 +641,7 @@
           </blockquote>
         </div>
         <figure class="frame frame--wide others__frame" data-parallax="-5">
-          <img src="assets/images/others-1.jpg" width="1599" height="1066" loading="lazy" alt="Two people holding umbrellas in a green field, a tree behind them" style="object-position:50% 50%">
+          <img src="assets/images/couple-with-umbrellas-green-field.webp" width="1599" height="1066" loading="lazy" alt="Two people holding umbrellas in a green field, a tree behind them" style="object-position:50% 50%">
         </figure>
       </div>
     </section>
@@ -239,16 +655,16 @@
             <h2 class="display" id="frames-title">Selected<br>Frames</h2>
             <p class="pin__hint caption">Keep scrolling <span aria-hidden="true">→</span></p>
           </div>
-          <figure class="pframe" style="--h:60vh; --ar:3/2; --dy:-4vh"><div class="frame"><img src="assets/images/frames/frame-01.jpg" width="1500" height="1000" loading="lazy" alt="Couple walking between tall pine trees" style="object-position:50% 50%"></div><figcaption class="caption">01</figcaption></figure>
-          <figure class="pframe" style="--h:70vh; --ar:2/3; --dy:6vh"><div class="frame"><img src="assets/images/frames/frame-02.jpg" width="999" height="1500" loading="lazy" alt="Black and white profile portrait of a woman with long hair" style="object-position:50% 50%"></div><figcaption class="caption">02</figcaption></figure>
-          <figure class="pframe" style="--h:54vh; --ar:3/2; --dy:-8vh"><div class="frame"><img src="assets/images/frames/frame-03.jpg" width="1500" height="1000" loading="lazy" alt="Couple lying on a sofa in soft window light" style="object-position:50% 50%"></div><figcaption class="caption">03</figcaption></figure>
-          <figure class="pframe" style="--h:66vh; --ar:2/3; --dy:5vh"><div class="frame"><img src="assets/images/frames/frame-04.jpg" width="1002" height="1500" loading="lazy" alt="Black and white portrait of a couple holding each other" style="object-position:50% 50%"></div><figcaption class="caption">04</figcaption></figure>
-          <figure class="pframe" style="--h:58vh; --ar:1500/1045; --dy:-5vh"><div class="frame"><img src="assets/images/frames/frame-05.jpg" width="1500" height="1045" loading="lazy" alt="Group of friends posing close together in a studio" style="object-position:50% 50%"></div><figcaption class="caption">05</figcaption></figure>
-          <figure class="pframe" style="--h:72vh; --ar:2/3; --dy:4vh"><div class="frame"><img src="assets/images/frames/frame-06.jpg" width="999" height="1500" loading="lazy" alt="Woman in a denim vest lit by a circular backdrop" style="object-position:50% 50%"></div><figcaption class="caption">06</figcaption></figure>
-          <figure class="pframe" style="--h:52vh; --ar:3/2; --dy:-6vh"><div class="frame"><img src="assets/images/frames/frame-07.jpg" width="1500" height="1000" loading="lazy" alt="Silhouette of a woman reaching toward a pale moon-like light" style="object-position:50% 50%"></div><figcaption class="caption">07</figcaption></figure>
-          <figure class="pframe" style="--h:68vh; --ar:2/3; --dy:6vh"><div class="frame"><img src="assets/images/frames/frame-08.jpg" width="999" height="1500" loading="lazy" alt="Hand holding a brown leather handbag against a red skirt" style="object-position:50% 50%"></div><figcaption class="caption">08</figcaption></figure>
-          <figure class="pframe" style="--h:56vh; --ar:3/2; --dy:-4vh"><div class="frame"><img src="assets/images/frames/frame-09.jpg" width="1500" height="1000" loading="lazy" alt="Bride walking through a dark field" style="object-position:50% 50%"></div><figcaption class="caption">09</figcaption></figure>
-          <figure class="pframe" style="--h:70vh; --ar:2/3; --dy:5vh"><div class="frame"><img src="assets/images/frames/frame-10.jpg" width="1000" height="1500" loading="lazy" alt="Model in a purple and black top posing against a white wall" style="object-position:50% 50%"></div><figcaption class="caption">10</figcaption></figure>
+          <figure class="pframe" style="--h:60vh; --ar:3/2; --dy:-4vh"><div class="frame"><img src="assets/images/frames/couple-between-pine-trees.webp" width="1500" height="1000" loading="lazy" alt="Couple walking between tall pine trees" style="object-position:50% 50%"></div><figcaption class="caption">01</figcaption></figure>
+          <figure class="pframe" style="--h:70vh; --ar:2/3; --dy:6vh"><div class="frame"><img src="assets/images/frames/woman-profile-portrait-black-and-white.webp" width="999" height="1500" loading="lazy" alt="Black and white profile portrait of a woman with long hair" style="object-position:50% 50%"></div><figcaption class="caption">02</figcaption></figure>
+          <figure class="pframe" style="--h:54vh; --ar:3/2; --dy:-8vh"><div class="frame"><img src="assets/images/frames/couple-on-sofa-window-light.webp" width="1500" height="1000" loading="lazy" alt="Couple lying on a sofa in soft window light" style="object-position:50% 50%"></div><figcaption class="caption">03</figcaption></figure>
+          <figure class="pframe" style="--h:66vh; --ar:2/3; --dy:5vh"><div class="frame"><img src="assets/images/frames/couple-embrace-black-and-white.webp" width="1002" height="1500" loading="lazy" alt="Black and white portrait of a couple holding each other" style="object-position:50% 50%"></div><figcaption class="caption">04</figcaption></figure>
+          <figure class="pframe" style="--h:58vh; --ar:1500/1045; --dy:-5vh"><div class="frame"><img src="assets/images/frames/friends-group-studio-portrait.webp" width="1500" height="1045" loading="lazy" alt="Group of friends posing close together in a studio" style="object-position:50% 50%"></div><figcaption class="caption">05</figcaption></figure>
+          <figure class="pframe" style="--h:72vh; --ar:2/3; --dy:4vh"><div class="frame"><img src="assets/images/frames/woman-denim-vest-circle-backdrop.webp" width="999" height="1500" loading="lazy" alt="Woman in a denim vest lit by a circular backdrop" style="object-position:50% 50%"></div><figcaption class="caption">06</figcaption></figure>
+          <figure class="pframe" style="--h:52vh; --ar:3/2; --dy:-6vh"><div class="frame"><img src="assets/images/frames/silhouette-reaching-toward-moon-light.webp" width="1500" height="1000" loading="lazy" alt="Silhouette of a woman reaching toward a pale moon-like light" style="object-position:50% 50%"></div><figcaption class="caption">07</figcaption></figure>
+          <figure class="pframe" style="--h:68vh; --ar:2/3; --dy:6vh"><div class="frame"><img src="assets/images/frames/brown-leather-handbag-detail.webp" width="999" height="1500" loading="lazy" alt="Hand holding a brown leather handbag against a red skirt" style="object-position:50% 50%"></div><figcaption class="caption">08</figcaption></figure>
+          <figure class="pframe" style="--h:56vh; --ar:3/2; --dy:-4vh"><div class="frame"><img src="assets/images/frames/bride-walking-dark-field.webp" width="1500" height="1000" loading="lazy" alt="Bride walking through a dark field" style="object-position:50% 50%"></div><figcaption class="caption">09</figcaption></figure>
+          <figure class="pframe" style="--h:70vh; --ar:2/3; --dy:5vh"><div class="frame"><img src="assets/images/frames/model-purple-top-white-wall.webp" width="1000" height="1500" loading="lazy" alt="Model in a purple and black top posing against a white wall" style="object-position:50% 50%"></div><figcaption class="caption">10</figcaption></figure>
         </div>
         <div class="pin__bar" aria-hidden="true"><span></span></div>
       </div>
@@ -271,10 +687,10 @@
       <div class="process__grid">
         <div class="process__frames">
           <figure class="frame" data-parallax="-4" style="--r:3deg">
-            <img src="assets/images/process-2.jpg" width="1022" height="1599" loading="lazy" alt="Singer performing into a microphone against a dark background" style="object-position:50% 30%">
+            <img src="assets/images/singer-performing-with-microphone.webp" width="1022" height="1599" loading="lazy" alt="Singer performing into a microphone against a dark background" style="object-position:50% 30%">
           </figure>
           <figure class="frame" data-parallax="6" style="--r:-4deg">
-            <img src="assets/images/process-1.jpg" width="1066" height="1599" loading="lazy" alt="Black and white portrait of a singer gesturing with a microphone" style="object-position:50% 40%">
+            <img src="assets/images/singer-portrait-black-and-white.webp" width="1066" height="1599" loading="lazy" alt="Black and white portrait of a singer gesturing with a microphone" style="object-position:50% 40%">
           </figure>
         </div>
         <div class="process__body">
@@ -348,8 +764,8 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/motion.js" defer></script>
   <script src="js/lightbox.js" defer></script>

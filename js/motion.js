@@ -276,48 +276,49 @@
     document.addEventListener('keydown', onKey);
 
     await Promise.all([...shots, fullImg].map((i) => i.decode().catch(() => {})));
-    await wait(300);
+    await wait(120);
 
     // Burst: each frame holds a little longer than the last, like a shutter slowing down.
+    // (whole intro ≈ 3.4 s; it only plays on a first visit and then not again for 7 days)
     let shown = -1;
-    await tween(2200, (e, p) => {
+    await tween(1000, (e, p) => {
       count.textContent = String(Math.round(e * 100)).padStart(3, '0');
       const idx = Math.min(shots.length - 1, Math.floor(Math.pow(p, 0.8) * shots.length));
       if (idx !== shown) { shots.forEach((s, i) => s.classList.toggle('on', i === idx)); shown = idx; }
     }, inOut3);
     count.textContent = '100';
-    if (!skipped) await wait(250);
+    if (!skipped) await wait(100);
 
     // The burst frame opens to the full screen.
     const r = burst.getBoundingClientRect();
     const from = { t: r.top, r: innerWidth - r.right, b: innerHeight - r.bottom, l: r.left };
     burst.style.opacity = 0; count.style.opacity = 0; tag.style.opacity = 0;
-    await tween(1300, (e) => {
+    await tween(700, (e) => {
       const k = 1 - e;
       full.style.clipPath = `inset(${from.t * k}px ${from.r * k}px ${from.b * k}px ${from.l * k}px round ${4 * k}px)`;
       fullImg.style.transform = `scale(${1.25 - 0.25 * e})`;
     }, inOut5);
 
     // Name rises letter by letter from behind its masks.
-    tween(1400, (_, p) => {
+    tween(960, (_, p) => {
       chars.forEach((c, i) => {
-        const local = Math.min(1, Math.max(0, (p * 1400 - i * 45) / 900));
+        const local = Math.min(1, Math.max(0, (p * 960 - i * 24) / 500));
         c.style.transform = `translateY(${(1 - expo(local)) * 110}%)`;
       });
     }, linear);
-    await wait(700);
-    await tween(700, (e) => { sub.style.opacity = e; });
-    if (!skipped) await wait(600);
+    await wait(360);
+    await tween(320, (e) => { sub.style.opacity = e; });
+    if (!skipped) await wait(220);
 
     // Lift away; the hero starts building underneath as the overlay leaves.
     const quick = skipped;
     skipped = false;
     document.removeEventListener('keydown', onKey);
     document.dispatchEvent(new Event('intro:done'));
-    await tween(quick ? 600 : 1000, (e) => { el.style.transform = `translateY(${-100 * e}%)`; }, inOut3);
+    await tween(quick ? 450 : 600, (e) => { el.style.transform = `translateY(${-100 * e}%)`; }, inOut3);
     root.classList.remove('is-intro');
     el.style.transform = '';
-    try { sessionStorage.setItem('intro-seen', '1'); } catch (e) {}
+    try { localStorage.setItem('intro-seen-at', String(Date.now())); } catch (e) {}
   }
 
   /* ---------- Init ---------- */
