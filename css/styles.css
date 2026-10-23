@@ -250,7 +250,7 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   justify-content: flex-end;
   min-height: max(100svh, 760px);
-  padding: 0 var(--pad-x) var(--s-6);
+  padding: 0 var(--pad-x) var(--s-8);
   overflow: hidden;
   isolation: isolate;
 }
@@ -331,13 +331,6 @@ a { color: inherit; text-decoration: none; }
   gap: var(--s-4);
 }
 
-.hero__url {
-  position: relative;
-  z-index: 2;
-  margin-top: var(--s-7);
-  text-align: center;
-  color: var(--text-secondary);
-}
 
 /* ---------- Chapters ---------- */
 
@@ -995,7 +988,6 @@ html.is-lightbox { overflow: hidden; }
   .hero__by { grid-area: 2 / 1; margin: 0; align-self: start; justify-self: center; }
   .hero__desc { grid-row: 3; margin-inline: auto; }
   .hero__actions { grid-row: 4; justify-content: center; }
-  .hero__url { margin-top: var(--s-6); }
   .chapter { padding-block: var(--s-8); }
   .chapter--session .sweep { padding-block: var(--s-8); }
   .commercial__frames .frame:not(.frame--wide) { display: none; }
