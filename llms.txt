@@ -1,6 +1,6 @@
 # Oktavianus Balu Say — Photography Portfolio
 
-> Portfolio website of Oktavianus Balu Say, a photographer working in event, wedding, prewedding, brand and product, and portrait photography.
+> Portfolio website of Oktavianus Balu Say, a photographer working in event, wedding, prewedding, brand and product, and portrait photography. Based in Malang, serving Malang, Surabaya and surrounding areas (East Java, Indonesia).
 
 ## Work
 - [Events](https://abdizakiy.github.io/ovis-say/#events): concerts, stages and the details around them
@@ -13,6 +13,8 @@
 - [Process](https://abdizakiy.github.io/ovis-say/#process): inquiry and consultation, planning and scheduling, photoshoot day, editing and post-production, image delivery, follow-up and feedback
 
 ## Contact
+- Based in: Malang, East Java, Indonesia
+- Service area: Malang, Surabaya and surrounding areas
 - WhatsApp: +62 812-1799-2433 (https://wa.me/6281217992433)
 
 ## Notes
